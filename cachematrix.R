@@ -5,13 +5,16 @@
 ## very time consuming.
 
 ## This function will take a matrix and return a list of four
-## functions.
+## functions, allowing to access both the original matrix and
+## its inverse.
+
+
 
 makeCacheMatrix <- function(x = matrix()) {
       inv <- NULL
-      set <- function(y) {
+      set <- function(y) { ## The set function allows the original matrix to be modified
             x <<- y
-            inv <<- NULL
+            inv <<- NULL ## Since the original matrix has been modified, the inverse that had been computed is no longer valid
       }
       get <- function() x
       setinv <- function(inverse) inv <<- inverse
@@ -22,12 +25,16 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+## This function takes a special "list" such as the one created by 
+## the makeCacheMatrix function, and does the following :
+## 1) Checks whether the inverse of the matrix has already been computed
+## 2) If so, returns this inverse with the message "getting cached matrix"
+## 3) If not, it computes the inverse of the matrix, stores it using the setinv function, then returns it.
 
 cacheSolve <- function(x, ...) {
       inv <- x$getinv()
       if(!is.null(inv)) {
-            message("getting cached data")
+            message("getting cached matrix")
             return(inv)
       }
       data <- x$get()
