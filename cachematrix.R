@@ -1,7 +1,11 @@
-## Put comments here that give an overall description of what your
-## functions do
+## The goal of these two functions is to provide a way to cache the 
+## inverse of a matrix once it has been computed for the first time.
+## Then, if the inverse of this matrix is called again, it will be
+## retrieved from the cache rather than computed again, which can be
+## very time consuming.
 
-## Write a short comment describing this function
+## This function will take a matrix and return a list of four
+## functions.
 
 makeCacheMatrix <- function(x = matrix()) {
       inv <- NULL
